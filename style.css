@@ -97,25 +97,9 @@ body {
     right: 30px;
 }
 
+/* Menu toggle será reposicionado via media query */
 .menu-toggle {
-    top: 20px;
-    left: 20px;
-    display: none;
-}
-
-.back-to-top:hover,
-.theme-toggle:hover,
-.menu-toggle:hover {
-    background: var(--primary);
-    color: #fff;
-    transform: scale(1.05);
-}
-
-.back-to-top:focus-visible,
-.theme-toggle:focus-visible,
-.menu-toggle:focus-visible {
-    outline: 3px solid var(--accent);
-    outline-offset: 2px;
+    display: none; /* oculto em desktop */
 }
 
 /* ===== HEADER ===== */
@@ -480,7 +464,34 @@ body {
     padding: 1rem 1.2rem;
 }
 
-/* ===== RESPONSIVIDADE ===== */
+/* ===== RODAPÉ ===== */
+.footer {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 1.5rem 2rem;
+    text-align: center;
+    border-top: 1px solid rgba(0,0,0,0.08);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 0.8rem;
+    font-size: 0.9rem;
+    color: var(--text);
+}
+.footer a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 500;
+}
+.footer a:hover {
+    text-decoration: underline;
+}
+
+/* ================================================================
+   RESPONSIVIDADE - Apenas correções para mobile
+   ================================================================ */
+
 @media (max-width: 1024px) {
     .app-wrapper {
         padding: 1rem;
@@ -502,16 +513,38 @@ body {
         display: block;
     }
     .menu-toggle {
-        display: flex;
+        display: flex; /* visível em mobile/tablet */
+        position: fixed;
+        top: 15px;
+        left: 15px;
+        z-index: 1100;
+        background: var(--card);
+        border: 1px solid #ddd;
+        width: 44px;
+        height: 44px;
     }
     .header {
         padding: 0.6rem 1rem;
+        /* Em mobile, o cabeçalho não fica fixo (sticky) para melhor leitura */
+        position: relative;
+        top: auto;
+        min-height: auto;
+        border-bottom: 2px solid var(--primary);
+        margin-top: 0;
+    }
+    .header-brand {
+        padding-left: 55px; /* espaço para o botão do menu */
+        width: 100%;
     }
     .header-brand h1 {
         font-size: 1rem;
     }
     .header-logo {
         height: 40px;
+    }
+    .header-container {
+        flex-wrap: wrap;
+        gap: 0.3rem;
     }
 }
 
@@ -524,7 +557,22 @@ body {
         width: 100%;
         justify-content: flex-start;
         flex-wrap: wrap;
+        margin-top: 0.2rem;
     }
+    .header-brand {
+        padding-left: 55px;
+        width: 100%;
+    }
+    .header-brand h1 {
+        font-size: 1.1rem;
+    }
+    .subtitle {
+        font-size: 0.75rem;
+    }
+    .regimes .badge {
+        font-size: 0.6rem;
+    }
+
     .chapter-card {
         padding: 1rem;
     }
@@ -549,14 +597,30 @@ body {
     }
     .sidebar {
         max-height: 350px;
+        padding: 0.8rem 0.5rem;
+    }
+    .menu-list a {
+        font-size: 0.85rem;
+        padding: 0.4rem 0.6rem;
+    }
+    .btn-outline-sm {
+        font-size: 0.65rem;
+        padding: 0.2rem 0.6rem;
+    }
+
+    .footer {
+        padding: 1rem;
+        flex-direction: column;
+        gap: 0.5rem;
+        font-size: 0.8rem;
     }
 }
 
 @media (max-width: 480px) {
     .header-brand {
-        flex-direction: row;
-        align-items: center;
+        padding-left: 50px;
         gap: 0.5rem;
+        flex-wrap: wrap;
     }
     .header {
         padding: 0.4rem 0.6rem;
@@ -569,15 +633,15 @@ body {
     }
     .sidebar {
         max-height: 280px;
-        padding: 0.8rem 0.5rem;
+        padding: 0.6rem 0.4rem;
     }
     .menu-list a {
         font-size: 0.8rem;
-        padding: 0.3rem 0.6rem;
+        padding: 0.3rem 0.5rem;
     }
     .btn-outline-sm {
         font-size: 0.6rem;
-        padding: 0.2rem 0.6rem;
+        padding: 0.15rem 0.5rem;
     }
     .regimes .badge {
         font-size: 0.55rem;
@@ -585,6 +649,16 @@ body {
     }
     .subtitle {
         font-size: 0.7rem;
+    }
+    .footer {
+        padding: 0.8rem;
+        font-size: 0.7rem;
+    }
+    .menu-toggle {
+        top: 10px;
+        left: 10px;
+        width: 38px;
+        height: 38px;
     }
 }
 
